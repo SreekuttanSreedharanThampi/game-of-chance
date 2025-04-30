@@ -1,8 +1,8 @@
-﻿# Game of Chance API
+# Game of Chance API
 
 ## Overview
 
-The **Game of Chance API** is a backend service that simulates a betting game where players can create an account, place bets, and either win or lose points based on a randomly generated number. The player begins with 10,000 points and can wager those points on a prediction. If the prediction is correct, the player wins 9 times the wagered points; if incorrect, they lose their wagered points.
+The **Game of Chance API** is a backend service that simulates a betting game where players can create an account, place bets, and either win or lose points based on a randomly generated number using the REST Api's. The player begins with 10,000 points and can wager those points on a prediction. If the prediction is correct, the player wins 9 times the wagered points; if incorrect, they lose their wagered points.
 
 ### Key Features:
 - **Create Player**: Players can create an account(new player) via the API.
@@ -25,66 +25,80 @@ To run the **Game of Chance API** locally, follow these steps:
    ```bash
    git clone https://github.com/yourusername/game-of-chance.git
    cd game-of-chance
+   ```
 
-Restore the dependencies:
-	dotnet restore
+2. Restore the dependencies:
+    ```bash
+    dotnet restore
+    ```
 
-Run the application:
-dotnet run
-
-The application will be hosted on http://localhost:5000 (or another port if specified).
+3. Run the application:
+    ```bash
+    dotnet run
+    ```
 
 You can test the API endpoints using Postman or any HTTP client, or you can navigate to the Swagger UI.
 
-Setup Instructions
-Once you have the project running locally, you can interact with the following API endpoints:
+## Setup Instructions
+Once you have the project running locally, you can interact with the following REST API endpoints:
 
-1. Create Player
-Endpoint: POST /create-player
+### 1. Create Player
+**Endpoint**: POST /create-player
 
-Description: Creates a new player and stores their PlayerId in the session.
+**Description**: Creates a new player and stores their PlayerId in the session.
 
-Request: No body is needed.
+**Request**: No body is needed.
 
-Response: Returns a new player with a unique PlayerId and an initial account balance of 10,000 points.
+**Response**: Returns a new player with a unique PlayerId and an initial account balance of 10,000 points.
 
 
-2. Place Bet
-Endpoint: POST /place-bet
+### 2. Place Bet
+**Endpoint**:
+POST /place-bet
 
-Description: Places a bet for the player by predicting a number between 0-9 and specifying the points to wager.
+**Description**:
+Places a bet for the player by predicting a number between 0-9 and specifying the points to wager.
 
-Request Body:
+**Request Body**:
+```json
+  {
+    "playerId": 1,
+    "points": 10,
+    "number": 3
+  }
+```
 
-json
-Copy
-{
-  "playerId": 1,
-  "points": 100,
-  "number": 3
-}
-Response:
-
-200 OK: Returns the updated player's balance, bet status and the points won or lost.
+**Response**:
+Success(200 OK):
+```json
+  {
+    "accountBalance": 10090,
+    "status": "Won",
+    "points": "+90"
+  }
+```
 
 400 BadRequest: Returns error if the points are invalid or if the bet is placed incorrectly.
 
-Error Handling:
+**Error Handling**:
 
 If the player doesn't have enough points to place a bet, an InvalidOperationException is thrown.
 
 Invalid predicted numbers or bet points result in a 400 Bad Request response.
 
 
-Error Handling
-Bad Requests: If the player provides invalid inputs (e.g., negative points or a number outside the 0-9 range), a 400 Bad Request response is returned.
+## Error Handling
+**Bad Requests**:
+If the player provides invalid inputs (e.g., negative points or a number outside the 0-9 range), a 400 Bad Request response is returned.
 
-Not Enough Points: If the player tries to bet more points than they have, an InvalidOperationException is thrown and a 400 error response is returned.
+**Not Enough Points**:
+If the player tries to bet more points than they have, an InvalidOperationException is thrown and a 400 error response is returned.
 
-Unauthorized: If a player is not logged in or if their session has expired, a 401 Unauthorized response is returned.
+**Unauthorized**:
+If a player is not logged in or if their session has expired, a 401 Unauthorized response is returned.
 
 
-Future Enhancements
+## Future Enhancements
 The game is currently single-player, but there are many potential features to extend the functionality in the future:
 
 Multiplayer Mode: Support for multiple players to place bets against each other.
@@ -92,16 +106,19 @@ Multiplayer Mode: Support for multiple players to place bets against each other.
 Leaderboard: Track and display top players based on their account balance.
 
 
-Technologies Used
-.NET 8: For building the API backend.
+## Technologies Used
+**.NET 8**: 
+For building the API backend.
 
-Swagger: For API documentation and testing.
+**Swagger**: 
+For API documentation and testing.
 
-Moq: For unit testing and mocking dependencies in tests.
+**Moq**: 
+For unit testing and mocking dependencies in tests.
 
 
 
-Conclusion:
+## Conclusion:
 This README provides a comprehensive overview of the Game of Chance API. It includes:
 
 Setup instructions to get the project running locally.
