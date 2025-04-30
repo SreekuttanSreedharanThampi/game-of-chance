@@ -40,7 +40,7 @@ To run the **Game of Chance API** locally, follow these steps:
 You can test the API endpoints using Postman or any HTTP client, or you can navigate to the Swagger UI.
 
 ## Setup Instructions
-Once you have the project running locally, you can interact with the following REST API endpoints:
+Once you have the project running locally, you can interact with the following REST API endpoints. Start with creating a new player:
 
 ### 1. Create Player
 **Endpoint**: POST /create-player
@@ -62,7 +62,6 @@ Places a bet for the player by predicting a number between 0-9 and specifying th
 **Request Body**:
 ```json
   {
-    "playerId": 1,
     "points": 10,
     "number": 3
   }
