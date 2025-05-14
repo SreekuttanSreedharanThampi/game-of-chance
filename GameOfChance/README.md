@@ -1,8 +1,8 @@
-﻿# Game of Chance API
+# Game of Chance API
 
 ## Overview
 
-The **Game of Chance API** is a backend service that simulates a betting game where players can create an account, place bets, and either win or lose points based on a randomly generated number. The player begins with 10,000 points and can wager those points on a prediction. If the prediction is correct, the player wins 9 times the wagered points; if incorrect, they lose their wagered points.
+The **Game of Chance API** is a backend service that simulates a betting game where players can create an account, place bets, and either win or lose points based on a randomly generated number using the REST Api's. The player begins with 10,000 points and can wager those points on a prediction. If the prediction is correct, the player wins 9 times the wagered points; if incorrect, they lose their wagered points.
 
 ### Key Features:
 - **Create Player**: Players can create an account(new player) via the API.
@@ -27,20 +27,20 @@ To run the **Game of Chance API** locally, follow these steps:
    cd game-of-chance
    ```
 
-Restore the dependencies:
-```bash
-	dotnet restore
-```
+2. Restore the dependencies:
+    ```bash
+    dotnet restore
+    ```
 
-Run the application:
-```bash
-  dotnet run
-```
+3. Run the application:
+    ```bash
+    dotnet run
+    ```
 
 You can test the API endpoints using Postman or any HTTP client, or you can navigate to the Swagger UI.
 
 ## Setup Instructions
-Once you have the project running locally, you can interact with the following API endpoints:
+Once you have the project running locally, you can interact with the following REST API endpoints. Start with creating a new player:
 
 ### 1. Create Player
 **Endpoint**: POST /create-player
@@ -62,7 +62,6 @@ Places a bet for the player by predicting a number between 0-9 and specifying th
 **Request Body**:
 ```json
   {
-    "playerId": 1,
     "points": 10,
     "number": 3
   }
@@ -107,11 +106,14 @@ Leaderboard: Track and display top players based on their account balance.
 
 
 ## Technologies Used
-**.NET 8**: For building the API backend.
+**.NET 8**: 
+For building the API backend.
 
-**Swagger**: For API documentation and testing.
+**Swagger**: 
+For API documentation and testing.
 
-**Moq**: For unit testing and mocking dependencies in tests.
+**Moq**: 
+For unit testing and mocking dependencies in tests.
 
 
 
