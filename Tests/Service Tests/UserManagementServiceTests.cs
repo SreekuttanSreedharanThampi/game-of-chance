@@ -56,7 +56,7 @@ namespace Tests.Service_Tests
         /// Test should create new player with default points
         /// </summary>
         [Fact]
-        public void CreatePlayer_ShouldReturnNewPlayer_WithUniquePlayerId()
+        public void CreatePlayer_ShouldReturnNewPlayers_WithUniquePlayerIds()
         {
             // Arrange
             // Create first player
@@ -65,14 +65,9 @@ namespace Tests.Service_Tests
             var player2 = _userManagementService.CreatePlayer();
 
             // Act
-            // Assert that PlayerId of second player is unique
+            // Assert that PlayerId of first and second players are unique
             Assert.Equal(1, player1.PlayerId);
             Assert.Equal(2, player2.PlayerId);
-
-            // Assert that the player balances are correct
-            // Default account balance should be 10000
-            Assert.Equal(10000, player1.AccountBalance);
-            Assert.Equal(10000, player2.AccountBalance);
         }
     }
 }

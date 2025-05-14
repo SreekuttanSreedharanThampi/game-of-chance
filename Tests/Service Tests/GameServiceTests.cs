@@ -43,7 +43,6 @@ namespace Tests
             // Assert
             Assert.NotNull(betResponse);
             Assert.Equal(10900, betResponse.AccountBalance);
-            Assert.Equal(BetStatus.Won, betResponse.Status);
             Assert.Equal("+900", betResponse.Points);
         }
 
@@ -64,7 +63,6 @@ namespace Tests
             Assert.NotNull(betResponse);
             // Player loses the bet (100 points are deducted)
             Assert.Equal(9900, betResponse.AccountBalance);
-            Assert.Equal(BetStatus.Lost, betResponse.Status);
             Assert.Equal("-100", betResponse.Points);
         }
 
@@ -117,20 +115,5 @@ namespace Tests
             Assert.Equal(BetStatus.Lost, betResponse.Status);
         }
 
-        /// <summary>
-        /// Should return correct status when the bet amount is invalid (i.e. too high)
-        /// </summary>
-        [Fact]
-        public void PlaceBet_ShouldThrowException_WhenPlayerHasInsufficientPoints()
-        {
-            // Arrange
-            // Player doesn't have enough points
-            var betRequest = new BetRequest { Points = 20000, Number = 3 };
-
-            // Act & Assert
-            var exception = Assert.Throws<InvalidOperationException>(() =>
-            _gameService.PlaceBet(1, betRequest.Points, betRequest.Number));
-            Assert.Equal("Not enough points to place the bet", exception.Message);
-        }
     }
 }

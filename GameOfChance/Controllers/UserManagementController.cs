@@ -12,20 +12,18 @@ namespace GameOfChance.Controllers
     public class UserManagementController(IUserManagementService userManagementService,
         ISessionService sessionService) : Controller
     {
-        private readonly IUserManagementService _userManagementService = userManagementService;
-        private readonly ISessionService sessionService = sessionService;
 
         /// <summary>
         /// Create a new player
         /// </summary>
         /// <returns>A new player with PlayerId and Account Balance.</returns>
-        [HttpPost("create-player")]
+        [HttpPost]
         public IActionResult CreatePlayer()
         {
             try
             {
                 // Create a new player using the game service
-                var player = _userManagementService.CreatePlayer();
+                var player = userManagementService.CreatePlayer();
 
                 // Store the PlayerId in session
                 sessionService.StorePlayerIdInSession(player.PlayerId);
