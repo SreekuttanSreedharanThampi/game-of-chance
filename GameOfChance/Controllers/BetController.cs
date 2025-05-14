@@ -9,7 +9,7 @@ namespace GameOfChance.Controllers
     /// </summary>
     [ApiController]
     [Route("[controller]")]
-    public class GameController(IGameService gameService,
+    public class BetController(IGameService gameService,
         ISessionService sessionService,
         IBetValidationService betValidationService) : ControllerBase
     {

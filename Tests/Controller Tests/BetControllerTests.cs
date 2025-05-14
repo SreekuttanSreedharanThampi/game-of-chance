@@ -9,18 +9,18 @@ namespace Tests.Controller_Test
     /// <summary>
     /// Unit tests for the GameController class
     /// </summary>
-    public class GameControllerTests
+    public class BetControllerTests
     {
-        private readonly GameController _gameController;
+        private readonly BetController _gameController;
         private readonly Mock<IGameService> _mockGameService;
         private readonly Mock<ISessionService> _mockSessionService;
         private readonly Mock<IBetValidationService> _mockBetValidationService;
-        public GameControllerTests()
+        public BetControllerTests()
         {
             _mockGameService = new Mock<IGameService>();
             _mockSessionService = new Mock<ISessionService>();
             _mockBetValidationService = new Mock<IBetValidationService>();
-            _gameController = new GameController(_mockGameService.Object,
+            _gameController = new BetController(_mockGameService.Object,
                 _mockSessionService.Object, _mockBetValidationService.Object);
         }
 
